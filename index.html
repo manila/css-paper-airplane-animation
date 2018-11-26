@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+		body {
+			background: #445;
+		}
+		div#paper {
+			background: transparent;
+			width: 150px;
+			height: 200px;
+			margin: -100px auto auto auto;
+			perspective: 500px;
+			transform: rotateX(60deg) rotateY(0deg) rotateZ(-45deg);
+			transform-style: preserve-3d;
+			position: relative;
+			top: 50vh;
+			overflow: hidden;
+		}
+		div.triangle {
+			width: 0px;
+			height: 0px;	
+			border-style: solid;
+		}
+		div.fold1 {
+			border-color: red transparent red transparent;
+			border-width: 75px 15px 0px 0px;
+		}
+		div.fold2 {
+			border-color: transparent transparent blue transparent;
+			border-width: 0px 6.5px 15px 77px;
+			transform: translate(-33px, -47px) rotate(-67.5deg);
+		}
+		div.fold3 {
+			border-color: transparent transparent green transparent;
+			border-width: 0px 15px 20px 80px; 
+			transform: translate(-27.5px, -68px) rotate(-53.5deg);
+		}
+		div.fold4 {
+			border-color: transparent transparent purple transparent;
+			border-width: 100px 100px 100px 0px; 
+			transform: translate(-27.5px, -68px) rotate(-45deg);
+		}
+
+		div.invert {
+			transform: translate(0px, -20px) rotate(180deg) rotateY(180deg);
+		}
+		div.right-corner, div.left-corner {
+			transform-origin: center center;
+			transition: 1s;
+			z-index: 2;
+		}
+		div.right-corner {
+			border-width: 0px 75px 75px 0px;
+			border-color: #efefef #efefef transparent transparent;
+			transform: translateX(1px) rotate3d(1,1,0,0deg);
+			box-shadow: 2px -1px 1px #d0d0d0;
+		}
+		div.left-corner {
+			border-width: 75px 75px 0px 0px;	
+			border-color: #efefef #445 #445 #445;
+		}
+		div#right-corner2 {
+			border-width: 0px 77px 77px 0px; /* Oversized to hide gaps */
+			transform: translateX(1px) translateY(-1px); /* Again move to hide gaps */
+			border-color: transparent transparent #efefef #efefef;
+			box-shadow: 0px 0px 1px #efefef;
+			position: absolute;
+			display: block;
+			top: 0px;
+			z-index: 1;
+		}
+		div#left-corner2 {
+			border-width:77px 77px 0px 0px; /* Oversized to hide gaps */
+			transform: translateX(-1px) translateY(-1px); /* Again move to hide gaps */
+			border-color: transparent #efefef transparent transparent;
+			box-shadow: 0px 0px 1px #efefef;
+			position: absolute;
+			display: block;
+			top: 0px;
+			z-index: 1;
+		}
+		div.square {
+			width: 75px;
+			height: 125px;
+			background: #efefef;
+			z-index: 1;
+		}
+		div#paper-left, div#paper-right {
+			width: 75px;
+			height: 200px;
+			float: left;
+			z-index: 1;
+		}
+		div#paper-left {
+			box-shadow: 1px 0px 0px #efefef; /* Hide gaps between divs */
+		}
+		div.flip-right {
+			transform: rotate3d(1,1,0,180deg);
+		}
+		div.flip-left {
+			transform: rotate3d(-1,1,0,180deg);
+		}
+		</style>
+	</head>
+	<body>
+		<div id="paper">
+			
+			<div id="paper-left">
+				<div id="left-corner" class="triangle left-corner" onclick="this.classList.add('flip-left')"> </div>
+				<div id="left-corner2" class="triangle corner2"></div>
+				<div id="left-square" class="square"></div>
+			</div>
+
+			<div id="paper-right">
+				<div id="right-corner" class="triangle right-corner" onclick="this.classList.add('flip-right')"> </div>
+				<div id="right-corner2" class="triangle corner2"></div>
+				<div id="right-square" class="square"></div>
+			</div>
+			<!--
+			<div id="rw1" class="triangle fold1"></div>
+			<div id="rw2" class="triangle fold2"></div>
+			<div id="rw3" class="triangle fold3"></div>
+			<div id="rw4" class="triangle fold4"></div>
+			-->
+		</div>
+	</body>
+</html>
